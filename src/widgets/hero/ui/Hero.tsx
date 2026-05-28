@@ -20,10 +20,8 @@ export function Hero({
     <Box
       component="section"
       sx={{
-        mt: "-88px",
         width: "100%",
         minHeight: "100vh",
-        pt: "88px",
         backgroundImage: {
           xs: `url(${mobileBackgroundSrc})`,
           md: `url(${backgroundSrc})`,
@@ -44,8 +42,8 @@ export function Hero({
           justifyContent: { xs: "center", md: "space-between" },
           gap: 4,
           pb: { 
-            xs: 10, // 0
-            sm: 12, // 600
+            xs: 15, // 0
+            sm: 14, // 600
             md: 0, // 900
             lg: 0, // 1200
             xl: 0, // 1536

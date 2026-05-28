@@ -129,7 +129,7 @@ export default function RootLayout({
         />
         <Providers>
           <Header />
-          <main style={{ flex: 1, display: "flex", flexDirection: "column", paddingTop: 88 }}>
+          <main style={{ flex: 1, display: "flex", flexDirection: "column" }}>
             {children}
           </main>
           <Footer />
