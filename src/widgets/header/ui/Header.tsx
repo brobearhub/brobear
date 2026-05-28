@@ -50,7 +50,6 @@ export function Header() {
                 alt="Логотип «Бурый Медведь»"
                 width={50}
                 height={50}
-                priority
                 style={{ width: 50, height: 50 }}
               />
             </Link>

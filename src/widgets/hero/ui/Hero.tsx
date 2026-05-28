@@ -21,9 +21,9 @@ export function Hero({
       component="section"
       sx={{
         mt: "-88px",
-        // pt: "88px",
         width: "100%",
         minHeight: "100vh",
+        pt: "88px",
         backgroundImage: {
           xs: `url(${mobileBackgroundSrc})`,
           md: `url(${backgroundSrc})`,
@@ -36,21 +36,21 @@ export function Hero({
       <Container
         maxWidth="xl"
         sx={{
+          position: "relative",
+          zIndex: 2,
           minHeight: "100vh",
           display: "flex",
           alignItems: { xs: "flex-end", md: "center" },
           justifyContent: { xs: "center", md: "space-between" },
           gap: 4,
           pb: { 
-            xs: 2, // 0
-            sm: 5, // 600
+            xs: 10, // 0
+            sm: 12, // 600
             md: 0, // 900
             lg: 0, // 1200
             xl: 0, // 1536
           },
           pl: { 
-            // xs: 0, // 0
-            // sm: 0, // 600
             md: 7, // 900
             lg: 9, // 1200
             xl: 0, // 1536
@@ -68,7 +68,6 @@ export function Hero({
                   alt="Логотип «Бурый Медведь»"
                   width={128}
                   height={128}
-                  priority
                   style={{ width: "100%", height: "auto" }}
                 />
               </Box>
@@ -79,9 +78,10 @@ export function Hero({
                   textWrap: "balance",
                   textTransform: "uppercase",
                   color: "white",
+                  textAlign: "center",
                 }}
               >
-                <Box component="span" sx={{ color: { xs: "white", md: "primary.main" } }}>
+                <Box component="span" sx={{ color: { xs: "white", md: "primary.main" }, textShadow: { md: "0 0 10px rgba(0, 0, 0, 0.5)" } }}>
                   {firstTitle}
                 </Box>{" "}
                 {secondTitle}

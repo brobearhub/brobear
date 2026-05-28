@@ -39,7 +39,6 @@ export function About({
                   alt="Логотип «Бурый Медведь»"
                   width={128}
                   height={128}
-                  priority
                   style={{ width: "200px", height: "auto" }}
                 />
               </Box>
