@@ -1,8 +1,8 @@
 import { alpha, createTheme, darken, lighten } from "@mui/material/styles";
 import type { Theme } from "@mui/material/styles";
 
-const primaryMain = "#754a33";
-const infoMain = "#5FAEC2";
+export const primaryMain = "#754a33";
+export const infoMain = "#5FAEC2";
 
 export const theme: Theme = createTheme({
   palette: {

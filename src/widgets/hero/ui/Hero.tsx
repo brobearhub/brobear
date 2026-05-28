@@ -1,5 +1,7 @@
-import { Box, Container, Divider, Stack, Typography } from "@mui/material";
+import { Box, Container, Stack, Typography } from "@mui/material";
+import { alpha } from "@mui/material/styles";
 import Image from "next/image";
+import { primaryMain } from "@/theme";
 
 type HeroProps = {
   firstTitle?: string;
@@ -66,6 +68,7 @@ export function Hero({
                   alt="Логотип «Бурый Медведь»"
                   width={128}
                   height={128}
+                  priority
                   style={{ width: "100%", height: "auto" }}
                 />
               </Box>
@@ -84,14 +87,21 @@ export function Hero({
                 </Box>{" "}
                 {secondTitle}
               </Typography>
-              <Divider
+              {/* <Divider
                 sx={{
                   width: "100%",
                   borderColor: "primary.main",
                   borderWidth: 3,
                   mt: 2,
                 }}
-              />
+              /> */}
+              <Box
+                sx={{
+                  backgroundColor: alpha(primaryMain, 0.22),
+                  padding: 2,
+                  width: "100%",
+                }}
+              >
               <Typography
                 variant="h2"
                 sx={{
@@ -105,6 +115,7 @@ export function Hero({
               >
                 {subtitle}
               </Typography>
+              </Box>
         </Stack>
       </Container>
     </Box>
