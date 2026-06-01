@@ -1,8 +1,6 @@
-type Props = {
-  siteUrl: string;
-};
+import { SITE_URL } from "@/shared/constants/site";
 
-export function OrganizationSchema({ siteUrl }: Props) {
+export function OrganizationSchema() {
   return (
     <script
       id="schema-org"
@@ -12,8 +10,8 @@ export function OrganizationSchema({ siteUrl }: Props) {
           "@context": "https://schema.org",
           "@type": "Organization",
           name: "ООО «Бурый Медведь»",
-          url: siteUrl,
-          logo: `${siteUrl}/android-icon-192x192.png`,
+          url: SITE_URL,
+          logo: `${SITE_URL}/android-icon-192x192.png`,
         }),
       }}
     />

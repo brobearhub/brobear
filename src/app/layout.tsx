@@ -4,10 +4,10 @@ import "./globals.css";
 import { Providers } from "@/core/providers";
 import { YandexMetrikaProvider } from "@/shared/analitics";
 import { OrganizationSchema } from "@/shared/seo";
+import { SITE_URL } from "@/shared/constants/site";
 import { Footer } from "@/widgets/footer";
 import { Header } from "@/widgets/header";
 
-const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000").replace(/\/+$/, "");
 const siteName = "Бурый Медведь";
 const defaultTitle = `${siteName} — Центр разработки и автоматизации бизнеса`;
 const defaultDescription = "Разрабатываем веб‑приложения, CRM и AI‑решения для автоматизации бизнеса. Удобно пользователю. Выгодно бизнесу.";
@@ -22,7 +22,7 @@ const sofiaSans = Sofia_Sans({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: defaultTitle,
     template: `%s — ${siteName}`,
@@ -114,7 +114,7 @@ export default function RootLayout({
   return (
     <html lang="ru" className={sofiaSans.variable}>
       <body className={sofiaSans.className}>
-        <OrganizationSchema siteUrl={siteUrl} />
+        <OrganizationSchema />
         <YandexMetrikaProvider />
         <Providers>
           <Header />
