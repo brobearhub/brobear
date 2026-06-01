@@ -1,4 +1,4 @@
-import { Hero } from "@/widgets/hero";
+import { HeroV2 } from "@/widgets/herov2";
 import { About } from "@/widgets/about";
 import { Projects } from "@/widgets/projects";
 import type { Metadata } from "next";
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
-      <Hero />
+      <HeroV2 />
       <About />
       <Projects />
     </>
