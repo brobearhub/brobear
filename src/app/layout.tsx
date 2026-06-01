@@ -1,8 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import { Sofia_Sans } from "next/font/google";
-import Script from "next/script";
 import "./globals.css";
-import { Providers } from "./providers";
+import { Providers } from "@/core/providers";
+import { YandexMetrikaProvider } from "@/shared/analitics";
+import { OrganizationSchema } from "@/shared/seo";
 import { Footer } from "@/widgets/footer";
 import { Header } from "@/widgets/header";
 
@@ -113,20 +114,8 @@ export default function RootLayout({
   return (
     <html lang="ru" className={sofiaSans.variable}>
       <body className={sofiaSans.className}>
-        <Script
-          id="schema-org"
-          type="application/ld+json"
-          strategy="beforeInteractive"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Organization",
-              name: "ООО «Бурый Медведь»",
-              url: siteUrl,
-              logo: `${siteUrl}/android-icon-192x192.png`,
-            }),
-          }}
-        />
+        <OrganizationSchema siteUrl={siteUrl} />
+        <YandexMetrikaProvider />
         <Providers>
           <Header />
           <main style={{ flex: 1, display: "flex", flexDirection: "column" }}>
