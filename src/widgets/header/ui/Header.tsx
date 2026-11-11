@@ -1,81 +1,172 @@
 "use client";
 
-import { Box, Container, Stack, Typography, useScrollTrigger } from "@mui/material";
-import { alpha, useTheme } from "@mui/material/styles";
-import Image from "next/image";
+import { useState } from "react";
+import { Box, Button, Drawer, Link as MuiLink, Stack, Typography } from "@mui/material";
 import Link from "next/link";
+import { SiteContainer } from "@/shared/ui/site";
 
-const HEADER_HEIGHT = 88;
+const NAVIGATION = [
+  { label: "О нас", href: "/#about" },
+  { label: "Проекты", href: "/#projects" },
+  { label: "Подход", href: "/#approach" },
+];
 
 export function Header() {
-  const theme = useTheme();
-  const scrolled = useScrollTrigger({ disableHysteresis: true, threshold: 0 });
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <Box
       component="header"
       sx={{
-        opacity: scrolled ? 1 : 0,
-        position: "fixed",
+        position: "absolute",
         top: 0,
         left: 0,
         right: 0,
-        zIndex: theme.zIndex.appBar,
-        height: HEADER_HEIGHT,
+        zIndex: 10,
+        height: { xs: 74, md: 112 },
         display: "flex",
         alignItems: "center",
-        transition: theme.transitions.create(["background-color", "border-color", "box-shadow", "opacity"], {
-          duration: theme.transitions.duration.complex,
-        }),
-        bgcolor: scrolled ? alpha(theme.palette.background.default, 0.7) : "transparent",
-        borderBottom: 1,
-        borderColor: scrolled ? "divider" : "transparent",
-        boxShadow: scrolled ? `0 12px 36px ${alpha("#000", 0.22)}` : "none",
-        backdropFilter: scrolled ? "blur(5px)" : "none",
+        bgcolor: "#070707",
       }}
     >
-      <Container maxWidth="xl">
-        <Stack direction="row" spacing={2} sx={{ alignItems: "center", justifyContent: "space-between" }}>
+      <SiteContainer>
+        <Stack
+          direction="row"
+          sx={{
+            alignItems: "center",
+            justifyContent: "space-between",
+            gap: 3,
+          }}
+        >
           <Stack
+            component={Link}
+            href="/"
             direction="row"
-            spacing={2}
+            spacing={1.5}
+            aria-label="Бурый Медведь — на главную"
             sx={{
               alignItems: "center",
-              minWidth: 0,
+              flexShrink: 0,
             }}
           >
-            <Link href="/" aria-label="На главную">
-              <Image
-                src="/footprint-transparent.webp"
-                alt="Логотип «Бурый Медведь»"
-                width={50}
-                height={50}
-                style={{ width: 50, height: 50 }}
-              />
-            </Link>
-
-            <Stack spacing={0.25} sx={{ minWidth: 0 }}>
-              <Typography variant="h5" sx={{ textTransform: "uppercase", lineHeight: 1.05, fontWeight: 700 }}>
-                Бурый Медведь
-              </Typography>
-              <Typography
-                variant="body2"
-                sx={{
-                  color: "text.secondary",
-                  whiteSpace: "nowrap",
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
-                  fontSize: { xs: 10, md: 14 },
-                }}
-              >
-                Центр разработки и автоматизации бизнеса
-              </Typography>
-            </Stack>
+            <Box
+              aria-hidden="true"
+              sx={{
+                width: { xs: 12, md: 16 },
+                height: { xs: 12, md: 16 },
+                bgcolor: "primary.main",
+              }}
+            />
+            <Typography
+              sx={{
+                fontSize: { xs: 17, md: 23 },
+                fontWeight: 900,
+                lineHeight: 1.1,
+                whiteSpace: "nowrap",
+              }}
+            >
+              БУРЫЙ МЕДВЕДЬ
+            </Typography>
           </Stack>
 
-          <Box />
+          <Stack
+            component="nav"
+            aria-label="Основная навигация"
+            direction="row"
+            spacing={4.75}
+            sx={{
+              display: { xs: "none", md: "flex" },
+            }}
+          >
+            {NAVIGATION.map((item) => (
+              <MuiLink
+                key={item.href}
+                component={Link}
+                href={item.href}
+                color="inherit"
+                underline="hover"
+                sx={{
+                  fontSize: 18,
+                  fontWeight: 500,
+                  lineHeight: 1.1,
+                }}
+              >
+                {item.label}
+              </MuiLink>
+            ))}
+          </Stack>
+
+          <Button
+            aria-label="Открыть меню"
+            aria-expanded={menuOpen}
+            aria-controls={menuOpen ? "mobile-navigation" : undefined}
+            onClick={() => setMenuOpen(true)}
+            color="secondary"
+            sx={{
+              display: { xs: "inline-flex", md: "none" },
+              minWidth: 44,
+              minHeight: 44,
+              p: 0,
+              fontSize: 12,
+            }}
+          >
+            МЕНЮ
+          </Button>
         </Stack>
-      </Container>
+      </SiteContainer>
+
+      <Drawer
+        anchor="right"
+        open={menuOpen}
+        onClose={() => setMenuOpen(false)}
+        slotProps={{
+          paper: {
+            sx: {
+              width: "min(340px, 90vw)",
+              bgcolor: "background.default",
+              p: 3,
+            },
+          },
+        }}
+      >
+        <Stack spacing={4}>
+          <Button
+            onClick={() => setMenuOpen(false)}
+            aria-label="Закрыть меню"
+            color="secondary"
+            sx={{
+              alignSelf: "flex-end",
+              p: 1,
+              fontSize: 14,
+            }}
+          >
+            ЗАКРЫТЬ ×
+          </Button>
+          <Stack
+            component="nav"
+            id="mobile-navigation"
+            aria-label="Мобильная навигация"
+            spacing={3}
+          >
+            {NAVIGATION.map((item) => (
+              <MuiLink
+                key={item.href}
+                component={Link}
+                href={item.href}
+                onClick={() => setMenuOpen(false)}
+                color="inherit"
+                underline="hover"
+                sx={{
+                  fontSize: 30,
+                  fontWeight: 700,
+                }}
+              >
+                {item.label}
+              </MuiLink>
+            ))}
+          </Stack>
+        </Stack>
+      </Drawer>
     </Box>
   );
 }

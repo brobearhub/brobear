@@ -1,67 +1,74 @@
-import { alpha, createTheme, darken, lighten } from "@mui/material/styles";
-import type { Theme } from "@mui/material/styles";
+import { createTheme, darken, lighten } from "@mui/material/styles";
 
-export const primaryMain = "#754a33";
-export const infoMain = "#5FAEC2";
+export const primaryMain = "#f02c20";
+export const infoMain = "#ffc52a";
 
-export const theme: Theme = createTheme({
+export const theme = createTheme({
   palette: {
     mode: "dark",
     primary: {
       main: primaryMain,
-      light: lighten(primaryMain, 0.22),
-      dark: darken(primaryMain, 0.22),
-      contrastText: "#fff7f1",
+      light: lighten(primaryMain, 0.15),
+      dark: darken(primaryMain, 0.15),
+      contrastText: "#fff6eb",
     },
     secondary: {
-      main: "#d3b29a",
-      light: "#ead8cb",
-      dark: "#b79277",
-      contrastText: "#1b120c",
+      main: "#f4f0e8",
+      light: "#ffffff",
+      dark: "#a9a49d",
+      contrastText: "#090909",
     },
     info: {
       main: infoMain,
-      light: lighten(infoMain, 0.22),
-      dark: darken(infoMain, 0.22),
-      contrastText: "#0f0b09",
+      contrastText: "#090909",
     },
     background: {
-      default: "#0f0b09",
-      paper: "#15100d",
+      default: "#171717",
+      paper: "#222222",
     },
     text: {
-      primary: "#f7efe8",
-      secondary: alpha("#f7efe8", 0.72),
+      primary: "#f4f0e8",
+      secondary: "#a9a49d",
     },
-    divider: alpha("#f7efe8", 0.12),
+    divider: "#33302d",
   },
   shape: {
-    borderRadius: 14,
+    borderRadius: 6,
   },
   typography: {
     fontFamily: "var(--font-sofia-sans), Arial, Helvetica, sans-serif",
     h1: {
+      fontSize: 136,
       fontWeight: 900,
-      letterSpacing: -1.2,
-      fontSize: "clamp(40px, 4.2vw, 76px)",
-      lineHeight: 0.98,
-      textTransform: "uppercase",
+      lineHeight: 0.96,
+      letterSpacing: "-0.02em",
     },
     h2: {
-      fontWeight: 800,
-      letterSpacing: -0.8,
-      fontSize: "clamp(22px, 2.2vw, 34px)",
-      lineHeight: 1.15,
+      fontSize: 56,
+      fontWeight: 700,
+      lineHeight: 1.05,
+      letterSpacing: 0,
     },
     h3: {
-      fontWeight: 800,
-      letterSpacing: -0.6,
-      fontSize: "clamp(20px, 1.8vw, 30px)",
-      lineHeight: 1.18,
+      fontSize: 32,
+      fontWeight: 700,
+      lineHeight: 1.1,
+      letterSpacing: 0,
     },
     body1: {
-      fontSize: 16,
-      lineHeight: 1.65,
+      fontSize: 19,
+      lineHeight: 1.4,
+    },
+    body2: {
+      fontSize: 17,
+      lineHeight: 1.4,
+    },
+    button: {
+      fontSize: 20,
+      fontWeight: 700,
+      lineHeight: 1.1,
+      letterSpacing: 0,
+      textTransform: "none",
     },
   },
   components: {
@@ -77,7 +84,6 @@ export const theme: Theme = createTheme({
       styleOverrides: {
         root: {
           backgroundImage: "none",
-          border: `1px solid ${alpha("#f7efe8", 0.08)}`,
         },
       },
     },
@@ -87,29 +93,22 @@ export const theme: Theme = createTheme({
       },
       styleOverrides: {
         root: {
-          borderRadius: 999,
-          paddingInline: 18,
-          paddingBlock: 10,
-          textTransform: "none",
-          fontWeight: 700,
-          letterSpacing: 0.2,
+          borderRadius: 6,
+          padding: "18px 28px",
+          minHeight: 56,
+          whiteSpace: "nowrap",
         },
-        contained: {
-          boxShadow: `0 12px 28px ${alpha(primaryMain, 0.25)}`,
-        },
-      },
-    },
-    MuiOutlinedInput: {
-      styleOverrides: {
-        root: {
-          borderRadius: 12,
+        sizeSmall: {
+          minHeight: 42,
+          padding: "12px 20px",
+          fontSize: 16,
         },
       },
     },
     MuiLink: {
       styleOverrides: {
         root: {
-          textUnderlineOffset: 3,
+          textUnderlineOffset: 4,
         },
       },
     },

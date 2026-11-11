@@ -87,7 +87,7 @@ export const metadata: Metadata = {
     ],
   },
   other: {
-    "msapplication-TileColor": "#0f0b09",
+    "msapplication-TileColor": "#171717",
     "msapplication-TileImage": "/ms-icon-144x144.png",
   },
   ...(googleVerification || yandexVerification
@@ -101,7 +101,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0f0b09",
+  themeColor: "#171717",
   width: "device-width",
   initialScale: 1,
 };

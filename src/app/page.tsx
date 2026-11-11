@@ -1,6 +1,8 @@
 import { HeroV2 } from "@/widgets/herov2";
 import { About } from "@/widgets/about";
 import { Projects } from "@/widgets/projects";
+import { Process } from "@/widgets/process";
+import { Contact } from "@/widgets/contact";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -23,7 +25,9 @@ export default function Home() {
     <>
       <HeroV2 />
       <About />
+      <Process />
       <Projects />
+      <Contact />
     </>
   );
 }

@@ -1,85 +1,111 @@
-import { Box, Container, Stack, Typography } from "@mui/material";
-import Image from "next/image";
+import { Box, Stack, Typography } from "@mui/material";
+import { SectionLabel, SiteContainer } from "@/shared/ui/site";
 
-type AboutProps = {
-  title?: string;
-  text?: string;
-};
+const SERVICES = [
+  {
+    title: "Веб-приложения",
+    description: "От идеи до работающего сервиса. Удобно пользователю, выгодно бизнесу.",
+  },
+  {
+    title: "CRM и автоматизация",
+    description: "Объединяем процессы, данные и команду в одной системе.",
+  },
+  {
+    title: "AI-решения",
+    description: "Встраиваем искусственный интеллект в реальные задачи компании.",
+  },
+];
 
-export function About({
-  title = "Автоматизация бизнеса. Разработка IT-решений",
-  text = "Создаем системы автоматизации, CRM-платформы, веб-приложения и AI-решения для цифровизации и развития бизнеса.",
-}: AboutProps) {
+export function About() {
   return (
-    <Box
-      component="section"
-      id="about"
-      sx={{
-        width: "100%",
-        bgcolor: "background.default",
-        color: "text.primary",
-        borderTop: 1,
-        borderColor: "divider",
-      }}
-    >
-      <Container maxWidth="xl" sx={{ py: { xs: 8, md: 12 } }}>
-        <Stack
-          direction="column"
-          spacing={{ xs: 4, md: 8 }}
-          sx={{
-            maxWidth: 1160,
-            width: "100%",
-            mx: "auto",
-            alignItems: "center",
-          }}
-        >
-          <Box sx={{ width: "100%", display: "flex", justifyContent: "center", alignItems: "center" }}>
-                <Image
-                  src="/footprint-transparent-white-stripe.webp"
-                  alt="Логотип «Бурый Медведь»"
-                  width={128}
-                  height={128}
-                  style={{ width: "200px", height: "auto" }}
-                />
-              </Box>
-          <Stack
-            spacing={3}
+    <Box component="section" id="about" aria-labelledby="about-title">
+      <SiteContainer sx={{ py: { xs: 6, lg: 9 } }}>
+        <Stack spacing={{ xs: 3.5, lg: 5.5 }}>
+          <SectionLabel>01 / ЧТО МЫ ДЕЛАЕМ</SectionLabel>
+          <Box
             sx={{
-              maxWidth: 920,
-              width: "100%",
-              textAlign: "center",
-              alignItems: "center",
+              display: "grid",
+              gridTemplateColumns: { xs: "1fr", lg: "1.4fr 1fr" },
+              gap: { xs: 3.5, lg: 10 },
             }}
           >
             <Typography
               component="h2"
-              variant="h3"
-              color="primary"
+              id="about-title"
+              variant="h2"
               sx={{
-                fontWeight: 800,
-                letterSpacing: -0.5,
-                textWrap: "balance",
-                textTransform: "uppercase",
+                fontSize: { xs: 36, md: 46, lg: 53 },
               }}
             >
-              {title}
+              Автоматизация бизнеса.<br />Разработка IT-решений
             </Typography>
-
             <Typography
-              variant="body1"
               sx={{
-                fontSize: { xs: 16, md: 18 },
-                lineHeight: 1.7,
-                opacity: 0.86,
-                textWrap: "pretty",
-                maxWidth: 780,
+                color: "text.secondary",
+                fontSize: { xs: 18, lg: 22 },
+                lineHeight: 1.45,
               }}
             >
-              {text}
+              Создаём системы автоматизации, CRM-платформы, веб-приложения и AI-решения для развития бизнеса.
             </Typography>
-          </Stack>
+          </Box>
+          <Box
+            sx={{
+              display: "grid",
+              gridTemplateColumns: { xs: "1fr", sm: "repeat(2, minmax(0, 1fr))", md: "repeat(3, minmax(0, 1fr))" },
+              gap: 3,
+            }}
+          >
+            {SERVICES.map((service, index) => (
+              <Stack
+                component="article"
+                key={service.title}
+                spacing={2.5}
+                sx={{
+                  minWidth: 0,
+                  minHeight: { md: 250 },
+                  p: { xs: 3, lg: 4 },
+                  bgcolor: "background.paper",
+                  border: 1,
+                  borderColor: "divider",
+                  borderRadius: "6px",
+                }}
+              >
+                <Typography
+                  sx={{
+                    color: "primary.main",
+                    fontSize: 15,
+                    fontWeight: 700,
+                    lineHeight: 1.1,
+                  }}
+                >
+                  {String(index + 1).padStart(2, "0")}
+                </Typography>
+                <Stack spacing={1.5}>
+                  <Typography
+                    component="h3"
+                    variant="h3"
+                    sx={{
+                      fontSize: { xs: 26, lg: 32 },
+                    }}
+                  >
+                    {service.title}
+                  </Typography>
+                  <Typography
+                    sx={{
+                      color: "text.secondary",
+                      fontSize: { xs: 18, lg: 19 },
+                      lineHeight: 1.4,
+                    }}
+                  >
+                    {service.description}
+                  </Typography>
+                </Stack>
+              </Stack>
+            ))}
+          </Box>
         </Stack>
-      </Container>
+      </SiteContainer>
     </Box>
   );
 }

@@ -1,5 +1,8 @@
 html {
   height: 100%;
+  scroll-behavior: smooth;
+  scroll-padding-top: 24px;
+  color-scheme: dark;
 }
 
 html,
@@ -28,8 +31,25 @@ a {
   text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
+::selection {
+  color: #090909;
+  background: #ffc52a;
+}
+
+:focus-visible {
+  outline: 2px solid #ffc52a;
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
   html {
-    color-scheme: dark;
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
   }
 }

@@ -1,116 +1,189 @@
-import { Box, Container, Stack, Typography } from "@mui/material";
-import TravelExploreIcon from "@mui/icons-material/TravelExplore";
-import RateReviewIcon from "@mui/icons-material/RateReview";
-import EngineeringIcon from "@mui/icons-material/Engineering";
-import VolunteerActivismIcon from "@mui/icons-material/VolunteerActivism";
+"use client";
+
+import { useState } from "react";
+import { Box, Button, ButtonBase, Dialog, DialogActions, DialogContent, DialogTitle, Stack, Typography } from "@mui/material";
+import { ProjectButton, SiteContainer } from "@/shared/ui/site";
+
+const PROJECT_STATUS = {
+  DONE: 3,
+  DEVELOPMENT: 2,
+  NEXT: 1,
+  PENDING: 0,
+} as const;
+
+const PROJECT_STATUS_DISPLAY = {
+  [PROJECT_STATUS.DONE]: { color: "success.main", label: "Готов" },
+  [PROJECT_STATUS.DEVELOPMENT]: { color: "primary.main", label: "В разработке" },
+  [PROJECT_STATUS.NEXT]: { color: "info.main", label: "Следующий" },
+  [PROJECT_STATUS.PENDING]: { color: "grey.600", label: "В очереди" },
+} as const;
 
 const PROJECTS = [
-  { title: "zemle***.pro", Icon: TravelExploreIcon, color: "#0b5628" },
-  { title: "post***.ru", Icon: RateReviewIcon, color: "#f47b0d" },
-  { title: "hr***.ru", Icon: EngineeringIcon, color: "#0F3D8A" },
-  { title: "you***e.ru", Icon: VolunteerActivismIcon, color: "#d91379" },
-] as const;
+  { title: "zemledel.ru", description: "Платформа земельных и кадастровых услуг", status: PROJECT_STATUS.DEVELOPMENT, link: "https://zemledel.ru" },
+  { title: "post***.ru", description: "Сервис постинга", status: PROJECT_STATUS.NEXT },
+  { title: "med****le.ru", description: "Сервис рекламы и аналитики", status: PROJECT_STATUS.PENDING },
+  { title: "pa****y.ru", description: "Сервис покупок", status: PROJECT_STATUS.PENDING },
+  { title: "video****.ru", description: "Видео платформа для образования", status: PROJECT_STATUS.PENDING },
+  { title: "invest*****.ru", description: "Платформа для инвестиций", status: PROJECT_STATUS.PENDING },
+  { title: "hr***.ru", description: "HR-платформа", status: PROJECT_STATUS.PENDING },
+  { title: "you***e.ru", description: "Социальный проект", status: PROJECT_STATUS.PENDING },
+];
 
-type ProjectsProps = {
-  title?: string;
-};
+export function Projects() {
+  const [selectedProject, setSelectedProject] = useState<(typeof PROJECTS)[number] | null>(null);
 
-export function Projects({ title = "Наши проекты" }: ProjectsProps) {
   return (
-    <Box
-      component="section"
-      id="projects"
-      sx={{
-        width: "100%",
-        bgcolor: "secondary.light",
-        color: "text.primary",
-        borderTop: 1,
-        borderColor: "divider",
-      }}
-    >
-      <Container maxWidth="xl" sx={{ py: { xs: 8, md: 12 } }}>
-        <Stack
-          direction="column"
-          spacing={{ xs: 4, md: 6 }}
-          sx={{
-            maxWidth: 1160,
-            width: "100%",
-            mx: "auto",
-            alignItems: "center",
-          }}
-        >
-          <Typography
-            component="h2"
-            variant="h3"
-            color="primary"
+    <Box component="section" id="projects" aria-labelledby="projects-title">
+      <SiteContainer sx={{ py: { xs: 6, lg: 9 } }}>
+        <Stack spacing={{ xs: 3.5, lg: 4.75 }}>
+          <Stack
+            direction={{ xs: "column-reverse", sm: "row" }}
+            spacing={3.5}
             sx={{
-              fontWeight: 800,
-              letterSpacing: -0.5,
-              textWrap: "balance",
-              textTransform: "uppercase",
-              textAlign: "center",
+              justifyContent: "space-between",
+              alignItems: { xs: "flex-start", sm: "baseline" },
             }}
           >
-            {title}
-          </Typography>
-
+            <Typography
+              component="h2"
+              id="projects-title"
+              variant="h2"
+              sx={{
+                fontSize: { xs: 36, md: 46, lg: 56 },
+                lineHeight: 1.1,
+              }}
+            >
+              Наши проекты
+            </Typography>
+            <Typography
+              sx={{
+                color: "text.secondary",
+                fontSize: 14,
+                lineHeight: 1.1,
+              }}
+            >
+              03 / ПОРТФОЛИО
+            </Typography>
+          </Stack>
+          <Box sx={{ height: "1px", bgcolor: "divider" }} />
           <Box
             sx={{
-              width: "100%",
               display: "grid",
-              gridTemplateColumns: { xs: "1fr", sm: "repeat(2, 1fr)", md: "repeat(4, 1fr)" },
-              gap: { xs: 2, md: 3 },
+              gridTemplateColumns: { xs: "1fr", sm: "repeat(2, minmax(0, 1fr))", lg: "repeat(4, minmax(0, 1fr))" },
+              gap: 3,
             }}
           >
-            {PROJECTS.map((p) => (
-              <Box
-                key={p.title}
+            {PROJECTS.map((project, index) => (
+              <ButtonBase
+                key={project.title}
+                onClick={() => setSelectedProject(project)}
+                aria-label={`О проекте ${project.title}: ${project.description}. Статус: ${PROJECT_STATUS_DISPLAY[project.status].label}`}
                 sx={{
-                  p: { xs: 2.5, md: 3 },
-                  borderRadius: 3,
+                  minWidth: 0,
+                  minHeight: 210,
                   display: "flex",
                   flexDirection: "column",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  gap: 2,
-                  color: "grey.900",
-                  transition: "transform 160ms ease, border-color 160ms ease",
+                  alignItems: "stretch",
+                  justifyContent: "flex-start",
+                  p: "26px",
+                  textAlign: "left",
+                  bgcolor: "background.paper",
+                  border: 1,
+                  borderColor: "divider",
+                  borderRadius: "4px",
+                  transition: "border-color 160ms ease, transform 160ms ease",
                   "&:hover": {
-                    transform: "translateY(-2px)",
-                    color: "primary.main",
+                    borderColor: "primary.main",
+                    transform: "translateY(-3px)",
+                  },
+                  "&.Mui-focusVisible": {
+                    outline: "2px solid",
+                    outlineColor: "info.main",
+                    outlineOffset: 4,
                   },
                 }}
               >
-                <Box
+                <Stack
+                  direction="row"
                   sx={{
-                    flex: "0 0 auto",
-                    width: 44,
-                    height: 44,
-                    borderRadius: 2,
-                    display: "grid",
-                    placeItems: "center",
-                    color: p.color,
+                    justifyContent: "space-between",
+                    alignItems: "flex-start",
+                    minHeight: 29,
+                    mb: "60px",
                   }}
                 >
-                  <p.Icon sx={{ fontSize: 44 }} />
-                </Box>
-
+                  <Typography sx={{ color: "text.secondary", fontSize: 14, lineHeight: 1.1 }}>
+                    {String(index + 1).padStart(2, "0")}
+                  </Typography>
+                  <Stack
+                    component="span"
+                    direction="row"
+                    spacing={1}
+                    aria-hidden="true"
+                    sx={{
+                      alignItems: "center",
+                    }}
+                  >
+                    <Typography
+                      component="span"
+                      sx={{
+                        color: "text.secondary",
+                        fontSize: 14,
+                        lineHeight: 1.1,
+                      }}
+                    >
+                      {PROJECT_STATUS_DISPLAY[project.status].label}
+                    </Typography>
+                    <Box
+                      component="span"
+                      sx={{
+                        width: 16,
+                        height: 16,
+                        flexShrink: 0,
+                        bgcolor: PROJECT_STATUS_DISPLAY[project.status].color,
+                      }}
+                    />
+                  </Stack>
+                </Stack>
                 <Typography
                   component="h3"
-                  variant="h5"
                   sx={{
-                    fontWeight: 600,
-                    letterSpacing: -0.2,
-                    textWrap: "balance",
+                    fontSize: 31,
+                    fontWeight: 700,
+                    lineHeight: 1.1,
+                    mb: 2.5,
                   }}
                 >
-                  {p.title}
+                  {project.title}
                 </Typography>
-              </Box>
+                <Typography variant="body2" sx={{ color: "text.secondary", lineHeight: 1.1 }}>
+                  {project.description}
+                </Typography>
+              </ButtonBase>
             ))}
           </Box>
         </Stack>
-      </Container>
+      </SiteContainer>
+
+      <Dialog
+        open={selectedProject !== null}
+        onClose={() => setSelectedProject(null)}
+        aria-labelledby="project-dialog-title"
+        fullWidth
+        maxWidth="sm"
+      >
+        <DialogTitle id="project-dialog-title">{selectedProject?.title}</DialogTitle>
+        <DialogContent>
+          <Typography sx={{ color: "text.secondary", mb: 2 }}>
+            {selectedProject?.description}
+          </Typography>
+          <Typography>Нужно похожее решение для вашего бизнеса? Давайте обсудим вашу задачу.</Typography>
+        </DialogContent>
+        <DialogActions sx={{ p: 3, flexWrap: "wrap", gap: 1 }}>
+          <Button onClick={() => setSelectedProject(null)} color="secondary">Закрыть</Button>
+          <ProjectButton onClick={() => setSelectedProject(null)} />
+        </DialogActions>
+      </Dialog>
     </Box>
   );
 }

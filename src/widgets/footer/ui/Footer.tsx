@@ -1,30 +1,53 @@
-import { Box, Container, Typography } from "@mui/material";
+import { Box, Link, Stack, Typography } from "@mui/material";
+import { SiteContainer } from "@/shared/ui/site";
 
-type FooterProps = {
-  text?: string;
-};
-
-export function Footer({ text = '©2026 OOO "Бурый медведь" Все права защищены. Центр разработки и автоматизации бизнеса' }: FooterProps) {
+export function Footer() {
   return (
     <Box
       component="footer"
       sx={{
-        width: "100%",
-        borderTop: 1,
-        borderColor: "divider",
-        bgcolor: "background.default",
-        color: "text.primary",
+        bgcolor: "#070707",
       }}
     >
-      <Container maxWidth="xl" sx={{ py: 2.5 }}>
-        <Typography
-          variant="body2"
-          color="secondary"
-          sx={{ opacity: 0.8, textAlign: "center" }}
+      <SiteContainer sx={{ py: 3.5 }}>
+        <Stack
+          direction={{ xs: "column", md: "row" }}
+          spacing={2}
+          sx={{
+            justifyContent: "space-between",
+            alignItems: { xs: "flex-start", md: "center" },
+            color: "text.secondary",
+            fontSize: 16,
+            lineHeight: 1.1,
+          }}
         >
-          {text}
-        </Typography>
-      </Container>
+          <Typography sx={{ fontSize: "inherit", lineHeight: "inherit" }}>
+            © {new Date().getFullYear()} ООО «Бурый Медведь»{" "}
+            <Box
+              component="span"
+              sx={{
+                whiteSpace: "nowrap",
+              }}
+            >
+              ОГРН 1269600017026
+            </Box>
+          </Typography>
+          <Typography sx={{ fontSize: "inherit", lineHeight: "inherit" }}>
+            Разработка и автоматизация бизнеса
+          </Typography>
+          <Link
+            href="/"
+            color="text.primary"
+            underline="hover"
+            sx={{
+              fontSize: "inherit",
+              fontWeight: 700,
+            }}
+          >
+            brobear.ru
+          </Link>
+        </Stack>
+      </SiteContainer>
     </Box>
   );
 }
