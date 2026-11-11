@@ -1,40 +1,6 @@
 import { Box, Stack, Typography } from "@mui/material";
 import { SectionLabel, SiteContainer } from "@/shared/ui/site";
-
-const STAGES = [
-  {
-    title: "Понимаем задачу",
-    description: "Обсуждаем ваш бизнес и будущих пользователей. Определяем, какую задачу должно решить приложение.",
-  },
-  {
-    title: "Определяем возможности",
-    description: "Вместе выбираем, что должно уметь приложение и какие функции нужны в первую очередь.",
-  },
-  {
-    title: "Создаём удобный дизайн",
-    description: "Показываем, как будут выглядеть экраны и как ими пользоваться. Согласуем оформление.",
-  },
-  {
-    title: "Продумываем работу приложения",
-    description: "Решаем, как хранить данные и связать приложение с нужными вам сервисами.",
-  },
-  {
-    title: "Разрабатываем приложение",
-    description: "Создаём функции по частям. Показываем промежуточные результаты и проверяем, что всё работает.",
-  },
-  {
-    title: "Проверяем перед запуском",
-    description: "Проверяем основные действия, доступ к данным и работу на телефонах и компьютерах.",
-  },
-  {
-    title: "Запускаем приложение",
-    description: "Открываем приложение для пользователей. Проверяем связь с другими сервисами и следим за его работой.",
-  },
-  {
-    title: "Развиваем приложение",
-    description: "Узнаём, что удобно пользователям и что стоит улучшить. Вместе выбираем следующие доработки.",
-  },
-];
+import { stages } from "@/shared/content/process";
 
 export function Process() {
   return (
@@ -78,51 +44,69 @@ export function Process() {
               gap: { xs: 0, sm: 3 },
             }}
           >
-            {STAGES.map((stage, index) => (
+            {stages.map((stage, index) => (
               <Box
                 component="li"
-                key={stage.title}
-                sx={{
-                  minWidth: 0,
-                  minHeight: { sm: 276 },
-                  display: { xs: "grid", sm: "flex" },
-                  gridTemplateColumns: "22px minmax(0, 1fr)",
-                  flexDirection: "column",
-                  gap: { xs: 2.25, sm: 2.5 },
-                  px: { xs: 0, sm: "26px" },
-                  py: { xs: 3, sm: "26px" },
-                  bgcolor: { xs: "transparent", sm: "background.paper" },
-                  borderStyle: "solid",
-                  borderWidth: { xs: "0 0 1px", sm: "1px" },
-                  borderColor: "divider",
-                  borderRadius: { xs: 0, sm: "6px" },
-                }}
+                key={stage.slug}
+                sx={{ minWidth: 0, display: "flex" }}
               >
-                <Typography
-                  aria-hidden="true"
+                <Box
+                  component="a"
+                  href={`/process/${stage.slug}`}
                   sx={{
-                    color: "primary.main",
-                    fontSize: 15,
-                    fontWeight: 700,
-                    lineHeight: 1.2,
+                    width: "100%",
+                    minWidth: 0,
+                    minHeight: { sm: 276 },
+                    display: { xs: "grid", sm: "flex" },
+                    gridTemplateColumns: "22px minmax(0, 1fr)",
+                    flexDirection: "column",
+                    gap: { xs: 2.25, sm: 2.5 },
+                    px: { xs: 0, sm: "26px" },
+                    py: { xs: 3, sm: "26px" },
+                    bgcolor: { xs: "transparent", sm: "background.paper" },
+                    borderStyle: "solid",
+                    borderWidth: { xs: "0 0 1px", sm: "1px" },
+                    borderColor: "divider",
+                    borderRadius: { xs: 0, sm: "6px" },
+                    color: "text.primary",
+                    textDecoration: "none",
+                    transition: "border-color 160ms ease",
+                    "&:hover": {
+                      borderColor: "primary.main",
+                    },
+                    "&:focus-visible": {
+                      outline: "2px solid",
+                      outlineColor: "primary.main",
+                      outlineOffset: "3px",
+                    },
                   }}
                 >
-                  {String(index + 1).padStart(2, "0")}
-                </Typography>
-                <Stack spacing={{ xs: 1.25, sm: 1.5 }}>
                   <Typography
-                    component="h3"
-                    variant="h3"
+                    aria-hidden="true"
                     sx={{
-                      fontSize: { xs: 24, sm: 26 },
+                      color: "primary.main",
+                      fontSize: 15,
+                      fontWeight: 700,
+                      lineHeight: 1.2,
                     }}
                   >
-                    {stage.title}
+                    {String(index + 1).padStart(2, "0")}
                   </Typography>
-                  <Typography variant="body2" sx={{ color: "text.secondary" }}>
-                    {stage.description}
-                  </Typography>
-                </Stack>
+                  <Stack spacing={{ xs: 1.25, sm: 1.5 }}>
+                    <Typography
+                      component="h3"
+                      variant="h3"
+                      sx={{
+                        fontSize: { xs: 24, sm: 26 },
+                      }}
+                    >
+                      {stage.cardTitle}
+                    </Typography>
+                    <Typography variant="body2" sx={{ color: "text.secondary" }}>
+                      {stage.cardDescription}
+                    </Typography>
+                  </Stack>
+                </Box>
               </Box>
             ))}
           </Box>

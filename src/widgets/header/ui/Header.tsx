@@ -7,8 +7,9 @@ import { SiteContainer } from "@/shared/ui/site";
 
 const NAVIGATION = [
   { label: "О нас", href: "/#about" },
+  { label: "Услуги", href: "/services" },
   { label: "Проекты", href: "/#projects" },
-  { label: "Подход", href: "/#approach" },
+  { label: "Подход", href: "/process" },
 ];
 
 export function Header() {

@@ -1,20 +1,6 @@
 import { Box, Stack, Typography } from "@mui/material";
 import { SectionLabel, SiteContainer } from "@/shared/ui/site";
-
-const SERVICES = [
-  {
-    title: "Веб-приложения",
-    description: "От идеи до работающего сервиса. Удобно пользователю, выгодно бизнесу.",
-  },
-  {
-    title: "CRM и автоматизация",
-    description: "Объединяем процессы, данные и команду в одной системе.",
-  },
-  {
-    title: "AI-решения",
-    description: "Встраиваем искусственный интеллект в реальные задачи компании.",
-  },
-];
+import { services } from "@/shared/content/services";
 
 export function About() {
   return (
@@ -56,10 +42,11 @@ export function About() {
               gap: 3,
             }}
           >
-            {SERVICES.map((service, index) => (
+            {services.map((service, index) => (
               <Stack
-                component="article"
-                key={service.title}
+                component="a"
+                href={`/services/${service.slug}`}
+                key={service.slug}
                 spacing={2.5}
                 sx={{
                   minWidth: 0,
@@ -69,6 +56,12 @@ export function About() {
                   border: 1,
                   borderColor: "divider",
                   borderRadius: "6px",
+                  color: "text.primary",
+                  textDecoration: "none",
+                  transition: "border-color 160ms ease",
+                  "&:hover": {
+                    borderColor: "primary.main",
+                  },
                 }}
               >
                 <Typography
@@ -89,7 +82,7 @@ export function About() {
                       fontSize: { xs: 26, lg: 32 },
                     }}
                   >
-                    {service.title}
+                    {service.cardTitle}
                   </Typography>
                   <Typography
                     sx={{
@@ -98,7 +91,7 @@ export function About() {
                       lineHeight: 1.4,
                     }}
                   >
-                    {service.description}
+                    {service.cardDescription}
                   </Typography>
                 </Stack>
               </Stack>

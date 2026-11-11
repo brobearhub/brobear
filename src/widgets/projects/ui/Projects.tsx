@@ -76,8 +76,12 @@ export function Projects() {
             {PROJECTS.map((project, index) => (
               <ButtonBase
                 key={project.title}
-                onClick={() => setSelectedProject(project)}
-                aria-label={`О проекте ${project.title}: ${project.description}. Статус: ${PROJECT_STATUS_DISPLAY[project.status].label}`}
+                component={project.link ? "a" : "button"}
+                href={project.link}
+                target={project.link ? "_blank" : undefined}
+                rel={project.link ? "noopener noreferrer" : undefined}
+                onClick={project.link ? undefined : () => setSelectedProject(project)}
+                aria-label={`${project.link ? "Открыть сайт" : "О проекте"} ${project.title}: ${project.description}. Статус: ${PROJECT_STATUS_DISPLAY[project.status].label}${project.link ? ". В новой вкладке" : ""}`}
                 sx={{
                   minWidth: 0,
                   minHeight: 210,

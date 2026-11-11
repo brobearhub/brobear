@@ -1,5 +1,6 @@
 import { Box, Link, Stack, Typography } from "@mui/material";
 import { SiteContainer } from "@/shared/ui/site";
+import { COMPANY_LEGAL_NAME, COMPANY_OGRN } from "@/shared/constants/site";
 
 export function Footer() {
   return (
@@ -22,14 +23,14 @@ export function Footer() {
           }}
         >
           <Typography sx={{ fontSize: "inherit", lineHeight: "inherit" }}>
-            © {new Date().getFullYear()} ООО «Бурый Медведь»{" "}
+            © {new Date().getFullYear()} {COMPANY_LEGAL_NAME}{" "}
             <Box
               component="span"
               sx={{
                 whiteSpace: "nowrap",
               }}
             >
-              ОГРН 1269600017026
+              ОГРН {COMPANY_OGRN}
             </Box>
           </Typography>
           <Typography sx={{ fontSize: "inherit", lineHeight: "inherit" }}>

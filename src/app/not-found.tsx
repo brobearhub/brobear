@@ -117,9 +117,6 @@ export default function NotFound() {
             <Button component={Link} href="/" variant="contained" color="primary">
               На главную
             </Button>
-            <Button component={Link} href="/themes" variant="outlined" color="secondary">
-              Посмотреть темы
-            </Button>
           </Stack>
         </Stack>
       </Container>

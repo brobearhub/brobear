@@ -18,9 +18,9 @@ export default async function OpenGraphImage() {
           flexDirection: "column",
           justifyContent: "center",
           padding: 72,
-          backgroundColor: "#0f0b09",
+          backgroundColor: "#171717",
           backgroundImage:
-            "radial-gradient(1000px 600px at 60% 40%, rgba(117, 74, 51, 0.55), rgba(15, 11, 9, 0.92) 70%)",
+            "radial-gradient(1000px 600px at 60% 40%, rgba(240, 44, 32, 0.22), rgba(7, 7, 7, 0.96) 70%)",
         }}
       >
         <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
@@ -37,7 +37,7 @@ export default async function OpenGraphImage() {
             }}
           >
             <span>Бурый</span>
-            <span style={{ color: "#754a33" }}>Медведь</span>
+            <span style={{ color: "#f02c20" }}>Медведь</span>
           </div>
           <div style={{ fontSize: 32, fontWeight: 700, color: "rgba(247, 239, 232, 0.85)", lineHeight: 1.25 }}>
             Центр разработки и автоматизации бизнеса

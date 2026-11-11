@@ -25,7 +25,7 @@ export function HeroV2() {
         }}
       >
         <Image
-          src="/images/bear-hero.png"
+          src="/images/bear-hero.webp"
           alt=""
           fill
           priority
