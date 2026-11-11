@@ -63,6 +63,7 @@ export function Header() {
                 fontSize: { xs: 17, md: 23 },
                 fontWeight: 900,
                 lineHeight: 1.1,
+                transform: "translateY(0.08em)",
                 whiteSpace: "nowrap",
               }}
             >
