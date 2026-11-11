@@ -112,7 +112,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ru" className={sofiaSans.variable}>
+    <html lang="ru" className={sofiaSans.variable} data-scroll-behavior="smooth">
       <body className={sofiaSans.className}>
         <OrganizationSchema />
         <YandexMetrikaProvider />
